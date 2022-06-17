@@ -7,8 +7,8 @@ locals {
     Name                                                   = local.cluster_name
     Env                                                    = "dev"
     format("kubernetes.io/cluster/%s", local.cluster_name) = "owned"
-    User = "darko.milic"
-    Schedule = "office-hours"
+    User                                                   = "darko.milic"
+    Schedule                                               = "office-hours"
   }
 
   tags_k8s = {
