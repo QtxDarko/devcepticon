@@ -1,0 +1,55 @@
+nodeExporter:
+  enabled: false
+pushgateway:
+  enabled: false
+kubeStateMetrics:
+  enabled: false
+alertmanager:
+  persistentVolume:
+    enabled: true
+server:
+  tcpSocketProbeEnabled: true
+  persistentVolume:
+    enabled: true
+    # storageClass: "sc-efs-csi"
+    # existingClaim: "pvc-prometheus"
+  extraVolumes:
+    - name: "shared-volume"
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: "shared-volume"
+      mountPath: "/prometheus"
+  extraArgs:
+    web.config.file: /etc/config/web.config.yml
+  probeHeaders:
+    - name: Authorization
+      value: Basic '${prometheus_admin_user_password}'
+  sidecarContainers:
+    ecs-discovery:
+      # image: "gjorgjit/prometheus-ecs-discovery:latest"
+      # image: "866021465103.dkr.ecr.eu-central-1.amazonaws.com/prometheus-ecs-discovery:latest"
+      args: ["-config.write-to=/mnt/ecs_file_sd.yml", "-config.cluster=${ecs_cluster}"]
+      volumeMounts:
+        - name: "shared-volume"
+          mountPath: "/mnt"
+      # env:
+      #   - name: "AWS_REGION"
+      #     value: "eu-central-1"
+  # ingress:
+  #   enabled: true
+  #   # annotations:
+  #   #   kubernetes.io/ingress.class: alb
+  #   ingressClassName: alb
+extraScrapeConfigs: |
+  - job_name: "ecs-metrics"
+    file_sd_configs:
+      - files:
+        - "/prometheus/ecs_file_sd.yml"
+        refresh_interval: 1m
+    metric_relabel_configs:
+      - regex: task_arn
+        action: labeldrop
+serverFiles:
+  web.config.yml:
+    basic_auth_users:
+      admin: '${prometheus_admin_password}'

@@ -1,0 +1,15 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: test-gateway
+spec: 
+  selector:
+    istio: ingress
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "k8s-istioing-ingress-d24bc6e0df-1575600977.eu-central-1.elb.amazonaws.com"

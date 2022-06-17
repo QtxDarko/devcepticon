@@ -1,0 +1,19 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: test-virtualservice
+spec: 
+  hosts:
+  - "k8s-istioing-ingress-d24bc6e0df-1575600977.eu-central-1.elb.amazonaws.com"
+  gateways:
+  - test-gateway
+  http:
+  - match: 
+    - uri:   
+        exact: /monitoring/test-svc
+    route:
+    - destination:
+        host: test-svc
+        port:
+          number: 80
