@@ -10,8 +10,8 @@ variable "cluster_config" {
   default = {
     access_from_bastion = true
     aws_region          = "eu-central-1"
-    cluster_name_prefix = "sferatech-v2"
-    kubernetes_version  = "1.22"
+    cluster_name_prefix = "devcepticon-v1"
+    kubernetes_version  = "1.21"
     workers = {
       key_name    = "remote_access"
       disk_size   = 50

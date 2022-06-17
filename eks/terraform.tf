@@ -1,10 +1,9 @@
 terraform {
   cloud {
-    organization = "sferatechnologies"
+    organization = "example-org-e3ac34"
     workspaces {
       tags = [
-        "ecs",
-        "sferatech"
+        "test-eks"
       ]
     }
   }

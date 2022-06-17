@@ -1,6 +1,6 @@
 data "aws_vpcs" "public" {
   tags = {
-    Scope = "Public"
+    vpctype = "default"
   }
 }
 
@@ -29,11 +29,11 @@ data "aws_subnet" "public" {
   id       = each.value
 }
 
-data "aws_instance" "bastion" {
-  filter {
-    name = "tag:Name"
-    values = [
-      "EKS Bastion"
-    ]
-  }
-}
+# data "aws_instance" "bastion" {
+#   filter {
+#     name = "tag:Name"
+#     values = [
+#       "EKS Bastion"
+#     ]
+#   }
+# }

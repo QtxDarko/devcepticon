@@ -1,0 +1,28 @@
+### Terraform template
+# Local .terraform directories
+*/.terraform/
+
+# .tfstate files
+*.tfstate
+.tfstate.
+
+# Crash log files
+crash.log
+
+*.tfvars
+
+# Python-related development directories
+.idea
+.venv
+.mypy_cache
+
+# VSCode configuration
+/.vscode
+
+# Stupid macos files
+.DS_Store
+
+# Artifacts
+**/kubeconfig.conf
+*/kubeconfig_
+**/artifacts/**.yaml
