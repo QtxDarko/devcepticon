@@ -19,7 +19,7 @@ variable "environment" {
 variable "cluster_name_prefix" {
   description = "EKS cluster name prefix"
   type        = string
-  default     = "sferatech-v2"
+  default     = "devcepticon-v1"
 }
 
 variable "ebs_storage_size" {
@@ -38,9 +38,8 @@ variable "eks_cluster_users" {
   description = "EKS Cluster Users"
   type        = list(string)
   default = [
-    "sferatech-terraform",
-    "morpheus",
-    "gjorgjit"
+    "terraform-cloud",
+    "darko.milic"
   ]
 }
 
@@ -59,7 +58,7 @@ variable "ecs_discovery_image" {
 variable "ecs_cluster_name_prefix" {
   description = "ECS cluster name prefix"
   type        = string
-  default     = "sferatech"
+  default     = "devcepticon"
 }
 
 variable "ecs_scan_interval" {

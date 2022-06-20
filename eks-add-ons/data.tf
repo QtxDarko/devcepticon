@@ -2,7 +2,7 @@ data "aws_caller_identity" "current" {}
 
 data "aws_vpcs" "public" {
   tags = {
-    Scope = "Public"
+    vpctype = "default"
   }
 }
 
@@ -38,10 +38,10 @@ data "aws_eks_cluster_auth" "eks_cluster" {
   name = local.cluster_name
 }
 
-data "aws_acm_certificate" "prometheus_server" {
-  domain   = local.prometheus_server_hostname
-  statuses = ["ISSUED"]
-}
+# data "aws_acm_certificate" "prometheus_server" {
+#   domain   = local.prometheus_server_hostname
+#   statuses = ["ISSUED"]
+# }
 
 # data "aws_route53_zone" "zone" {
 #   name = var.domain_name
