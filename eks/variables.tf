@@ -3,7 +3,7 @@ variable "environment" {
   type        = string
   default     = "dev"
 }
-
+//first change in variables
 variable "cluster_config" {
   description = "Cluster config"
   type        = any
